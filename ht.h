@@ -43,12 +43,10 @@ bool search(table_t table, char *key, char *value) {
   if ((table[h] -> key) == NULL)
     return false;
   elem_t *e = table[h];
-  int c = strncmp(table[h] -> key, key, KEY_SIZE);
-  while (e != NULL &&  e -> key != NULL && c > 0) {
+  while (e != NULL &&  e -> key != NULL && strncmp(e -> key, key, KEY_SIZE) != 0) {
     e = e -> NEXT;
   }
-
-  if (e == NULL || e -> key == NULL || c != 0) {
+  if (e == NULL || e -> key == NULL || strncmp(e -> key, key, KEY_SIZE) != 0) {
     return false;
   } else {
     value = e -> value;
